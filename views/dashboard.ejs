@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ticket-div{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <%- include('components/header.ejs',{username:username}) %>
+    <div class="ticket-div" id="ticket-container">
+        <% if (isResolver){ %>
+            <% if (tickets) { %>
+                <% tickets.forEach(ticket => { %>
+                    <%- include('components/resticket.ejs',{ticket}) %>
+                <% }) %>
+            <% } %>
+        <% } else { %>
+            <% if (tickets) { %> 
+                <% tickets.forEach(ticket => { %>
+                    <%- include('components/userticket.ejs',{ticket}) %>
+                <% }) %>
+            <% } %> 
+         <% } %>
+    </div>
+</body>
+<script>
+    const ticket = document.getElementById("ticket-container");
+    ticket.addEventListener('click',(event)=>{
+        console.log(event.target.id);
+    })
+</script>
+</html>

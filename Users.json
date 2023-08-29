@@ -1,0 +1,32 @@
+[
+    {
+        "username":"aa",
+        "password":"12345",
+        "role":"ordinary",
+        "id":"ordUser"
+    },
+    {
+        "username":"admin",
+        "password":"admin",
+        "role":"admin",
+        "id":"admin"
+    },
+    {
+        "username":"res",
+        "password":"res@123",
+        "role":"resolver",
+        "id":"res1"
+    },
+    {
+        "username":"res2",
+        "password":"res@123",
+        "role":"resolver",
+        "id":"res2"
+    },
+    {
+        "username":"bb",
+        "password":"12345",
+        "role":"ordinary",
+        "id":"ordUser"
+    }
+]

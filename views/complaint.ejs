@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register a complaint</title>
+    <style>
+        .main-div{
+            width: 100%;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #complaint-form{
+            height: 250px;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 10px;
+        }
+        input{
+            padding: 8px;
+        }
+        #desc{
+            height: 70px;
+            
+        }
+        #submit{
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <%- include('components/header.ejs',{username:username}) %>
+    <div class="main-div">
+        <form action="/ticket" method="post" id="complaint-form">
+            <% if (category){ %>
+               <div style="display: inline;">
+                    <label for="category">Issue: </label>
+                    <select name="category" id="category">
+                        <% category.forEach(value => { %>
+                            <option value="<%= value %>"><%= value %></option>
+                        <% }) %>
+                    </select>
+               </div>
+            <% } %>
+            <input type="text" name="title" id="title" placeholder="Title">
+            <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Write your issue here..."></textarea>
+            <input type="submit" name="submit" id="submit" value="Register Complaint">
+        </form>
+    </div>
+</body>
+</html>

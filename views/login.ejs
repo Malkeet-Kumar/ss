@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main-div{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+       
+        .content-div{
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-form{
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            border: 0px ;
+            height: 200px;
+            width: 300px;
+            border: 1px solid black;
+            padding:  30px 40px;
+        }
+        input{
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-div">
+        <%- include('components/header.ejs',{username:null}) %>
+        <div class="content-div">
+            <form action="/login" method="post" class="login-form">
+                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="password" name="password" id="password" placeholder="Password">
+                <% if (err) { %>
+                    <p style="color: red; font-weight: bold;"><%= err %></p>
+                <% } %>
+                <input type="submit" name="submit" id="submit" value="submit" style="background-color:green; border: none; color: white; border-radius: 5px;">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
