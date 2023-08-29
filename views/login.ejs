@@ -40,7 +40,7 @@
 </head>
 <body>
     <div class="main-div">
-        <%- include('components/header.ejs',{username:null}) %>
+        <%- include('components/header.ejs',{username:null,role:null}) %>
         <div class="content-div">
             <form action="/login" method="post" class="login-form">
                 <input type="text" name="username" id="username" placeholder="Username">

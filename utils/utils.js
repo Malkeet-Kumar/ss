@@ -16,6 +16,10 @@ function userLogin(req,res){
         res.render("login",{err:"Inavlid credentials !"});
     }
 }
+const loadLogout= (req, res)=>{
+    req.session.destroy();
+    res.redirect("/login");
+}
 
 function createTicket(req,res){
     const ticket = {
@@ -43,18 +47,20 @@ function getResolversTickets(){
 }
 
 function getDashboard(req,res){
+
     const tickets = JSON.parse(fs.readFileSync(ticketsDbFile,"utf-8"));
     if(req.session.role=="ordinary"){
     
         const userTickets = tickets.filter(t=>t.createdBy==req.session.username);
-        res.render("dashboard",{isResolver: false, username: req.session.username,tickets:userTickets});
+        res.render("dashboard",{role: req.session.role, username: req.session.username,tickets:userTickets});
 
     } else if(req.session.role=="resolver"){
 
         const resTickets = tickets.filter(t=>t.resolverId == req.session.userId);
-        res.render("dashboard",{isResolver:true,username:req.session.username, tickets: resTickets})
+        res.render("dashboard",{role:req.session.role,username:req.session.username, tickets: resTickets})
 
     } else if(req.session.role=="admin"){
+        res.render("dashboard",{role:req.session.role,username:req.session.username, tickets: tickets})
 
     }
 }
@@ -66,4 +72,4 @@ function getTicket(id,res){
     res.end(JSON.stringify(ticket));
     
 }
-module.exports = {userLogin, createTicket, getDashboard, getTicket}
+module.exports = {userLogin, createTicket, getDashboard, getTicket,loadLogout}

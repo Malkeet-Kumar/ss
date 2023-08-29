@@ -44,16 +44,33 @@
     }
 </style>
 <div class="header">
-    <div class="navbuttons">
-        <a href="#">Home</a>
-        <a href="#">Account</a>
-        <a href="#">Contact Us</a>
-        <a href="complaint">Complaint</a>
-    </div>
+    <% if (role=="ordinary") { %>
+        <div class="navbuttons">
+            <a href="#">Home</a>
+            <a href="#">Account</a>
+            <a href="#">Contact Us</a>
+            <a href="complaint">Complaint</a>
+        </div>
+      <% } else if(role=="resolver") { %>
+        <div class="navbuttons">
+            <a href="#">Home</a>
+            <a href="#">Account</a>
+            <a href="complaint">Complaint</a>
+            <a href="#">Opened Tickets</a>
+            <a href="">Closed Tickets</a>
+        </div>
+         <% } else { %>
+            <div class="navbuttons">
+                <a href="#">Home</a>
+                <a href="#">Account</a>
+                <a href="">Open Tickets</a>
+            </div>
+    <% } %>
+   
     <div class="usercontrol">
         <% if (username){ %>
                 <h3 style="color: white;"><%= username %></h3>
         <% } %>
-        <button id="logout">Logout</button>
+        <button id="logout"><a href="/logout" style="color: white; text-decoration: none;">Logout</a></button>
     </div>
 </div>

@@ -17,19 +17,25 @@
 <body>
     <%- include('components/header.ejs',{username:username}) %>
     <div class="ticket-div" id="ticket-container">
-        <% if (isResolver){ %>
+        <% if (role=="resolver"){ %>
             <% if (tickets) { %>
                 <% tickets.forEach(ticket => { %>
                     <%- include('components/resticket.ejs',{ticket}) %>
                 <% }) %>
             <% } %>
-        <% } else { %>
+        <% } else if(role=="ordinary"){ %>
             <% if (tickets) { %> 
                 <% tickets.forEach(ticket => { %>
                     <%- include('components/userticket.ejs',{ticket}) %>
                 <% }) %>
             <% } %> 
-         <% } %>
+        <% } else {%>
+            <% tickets.forEach(ticket => { %>
+                <% tickets.forEach(ticket => { %>
+                    <%- include('components/adminTicket.ejs',{ticket}) %>
+                <% }) %>
+            <% }) %>
+        <% } %>
     </div>
 </body>
 <script>

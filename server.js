@@ -30,8 +30,10 @@ app.post("/login",(req,res)=>{
     utils.userLogin(req, res);
 })
 
+app.get('/logout', utils.loadLogout)
+
 app.get("/complaint",(req,res)=>{
-    res.render("complaint",{username:"",category: cat});
+    res.render("complaint",{username:req.session.username,category: cat, role:req.session.role});
 })
 
 app.post("/ticket",(req,res)=>{
